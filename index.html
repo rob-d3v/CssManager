@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Manager - Gerenciador de CSS Avançado</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <h1>CSS Manager</h1>
+            </div>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch" checked>
+                    <span class="slider round"></span>
+                </label>
+                <span id="theme-label">Tema Escuro</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Arquivo</h3>
+                    <button id="load-file" class="sidebar-btn"><i class="fas fa-file-upload"></i> Carregar CSS</button>
+                    <button id="save-file" class="sidebar-btn"><i class="fas fa-save"></i> Salvar CSS</button>
+                    <button id="reset-all" class="sidebar-btn"><i class="fas fa-undo"></i> Reiniciar</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Conversão</h3>
+                    <div class="sidebar-option">
+                        <label>Converter unidades:</label>
+                        <select id="unit-conversion" class="select-style">
+                            <option value="px-to-rem">px para rem</option>
+                            <option value="rem-to-px">rem para px</option>
+                            <option value="px-to-em">px para em</option>
+                            <option value="px-to-percent">px para %</option>
+                            <option value="px-to-vw">px para vw</option>
+                            <option value="px-to-vh">px para vh</option>
+                        </select>
+                    </div>
+                    <div class="sidebar-option">
+                        <label>Tamanho base da fonte (px):</label>
+                        <input type="number" id="base-font-size" value="16" min="1" class="input-style">
+                    </div>
+                    <div class="sidebar-option">
+                        <label>Viewport largura (px):</label>
+                        <input type="number" id="viewport-width" value="1920" min="1" class="input-style">
+                    </div>
+                    <div class="sidebar-option">
+                        <label>Viewport altura (px):</label>
+                        <input type="number" id="viewport-height" value="1080" min="1" class="input-style">
+                    </div>
+                    <button id="convert-units-btn" class="sidebar-btn"><i class="fas fa-exchange-alt"></i> Converter</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Organização</h3>
+                    <button id="merge-duplicates" class="sidebar-btn"><i class="fas fa-object-group"></i> Mesclar duplicados</button>
+                    <div class="sidebar-option">
+                        <label>Ordenar propriedades:</label>
+                        <select id="sort-properties" class="select-style">
+                            <option value="alphabetical">Alfabética</option>
+                            <option value="grouped">Por grupo</option>
+                            <option value="importance">Por importância</option>
+                        </select>
+                    </div>
+                    <button id="sort-properties-btn" class="sidebar-btn"><i class="fas fa-sort"></i> Ordenar</button>
+                    <button id="remove-comments" class="sidebar-btn"><i class="fas fa-comment-slash"></i> Remover comentários</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Formatação</h3>
+                    <button id="format-css" class="sidebar-btn"><i class="fas fa-indent"></i> Formatar CSS</button>
+                    <button id="minify-css" class="sidebar-btn"><i class="fas fa-compress-alt"></i> Minificar CSS</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Funções Avançadas</h3>
+                    <button id="add-vendor-prefixes" class="sidebar-btn"><i class="fas fa-browser"></i> Adicionar prefixos</button>
+                    <button id="convert-to-javafx" class="sidebar-btn"><i class="fab fa-java"></i> Converter para JavaFX</button>
+                    <button id="convert-colors" class="sidebar-btn"><i class="fas fa-palette"></i> Converter cores</button>
+                    <div class="sidebar-option">
+                        <label>Formato de cores:</label>
+                        <select id="color-format" class="select-style">
+                            <option value="hex">HEX (#fff)</option>
+                            <option value="rgb">RGB</option>
+                            <option value="hsl">HSL</option>
+                        </select>
+                    </div>
+                    <button id="remove-unused" class="sidebar-btn"><i class="fas fa-broom"></i> Remover não utilizadas</button>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-section">
+                    <div class="editor-header">
+                        <h2>CSS Original</h2>
+                        <div class="editor-actions">
+                            <button id="copy-input" class="action-btn" title="Copiar"><i class="fas fa-copy"></i></button>
+                            <button id="clear-input" class="action-btn" title="Limpar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <textarea id="css-input" class="css-editor" placeholder="Cole seu CSS aqui ou carregue um arquivo..."></textarea>
+                </div>
+
+                <div class="editor-section">
+                    <div class="editor-header">
+                        <h2>CSS Processado</h2>
+                        <div class="editor-actions">
+                            <button id="copy-output" class="action-btn" title="Copiar"><i class="fas fa-copy"></i></button>
+                            <button id="apply-to-input" class="action-btn" title="Aplicar ao Input"><i class="fas fa-arrow-up"></i></button>
+                        </div>
+                    </div>
+                    <textarea id="css-output" class="css-editor" placeholder="O CSS processado aparecerá aqui..." readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <div class="preview-header">
+                <h2>Preview</h2>
+                <button id="toggle-preview" class="action-btn" title="Expandir/Recolher"><i class="fas fa-expand"></i></button>
+            </div>
+            <div class="preview-content">
+                <iframe id="preview-frame"></iframe>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <p>CSS Manager &copy; 2025 | Gerenciador de CSS Avançado</p>
+        </footer>
+    </div>
+
+    <!-- Modais -->
+    <div id="modal-container" class="modal-container hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Título Modal</h3>
+                <button id="close-modal" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="modal-content" class="modal-content">
+                <!-- Conteúdo dinâmico aqui -->
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel" class="btn-secondary">Cancelar</button>
+                <button id="modal-confirm" class="btn-primary">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils/parser.js"></script>
+    <script src="js/utils/converter.js"></script>
+    <script src="js/utils/formatter.js"></script>
+    <script src="js/utils/javaFXConverter.js"></script>
+    <script src="js/ui/themeManager.js"></script>
+    <script src="js/ui/previewManager.js"></script>
+    <script src="js/ui/modalManager.js"></script>
+    <script src="js/ui/fileManager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
