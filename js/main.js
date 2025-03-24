@@ -13,6 +13,8 @@ class CSSManager {
         this.copyOutputBtn = document.getElementById('copy-output');
         this.applyToInputBtn = document.getElementById('apply-to-input');
         this.resetAllBtn = document.getElementById('reset-all');
+        this.copyPixCodeBtn = document.getElementById('copy-pix-code');
+        this.pixCodeInput = document.getElementById('pix-code');
         
         // Botões de funções
         this.convertUnitsBtn = document.getElementById('convert-units-btn');
@@ -60,6 +62,7 @@ class CSSManager {
         this.copyOutputBtn.addEventListener('click', () => this.copyToClipboard(this.cssOutput));
         this.applyToInputBtn.addEventListener('click', () => this.applyOutputToInput());
         this.resetAllBtn.addEventListener('click', () => this.resetAll());
+        this.copyPixCodeBtn.addEventListener('click', () => this.copyToClipboard(this.pixCodeInput));
         
         // Botões de funções
         this.convertUnitsBtn.addEventListener('click', () => this.convertUnits());

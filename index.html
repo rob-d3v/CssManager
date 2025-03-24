@@ -98,6 +98,23 @@
                     </div>
                     <button id="remove-unused" class="sidebar-btn"><i class="fas fa-broom"></i> Remover não utilizadas</button>
                 </div>
+
+                <!-- Nova seção de doação -->
+                <div class="sidebar-section donation-section">
+                    <h3>Apoie o Projeto</h3>
+                    <div class="donation-container">
+                        <img src="qrCode.png" alt="QR Code PIX" class="donation-qrcode">
+                        <div class="donation-info">
+                            <p>Ajude a manter este projeto</p>
+                            <div class="pix-code-container">
+                                <div class="pix-code-input">00020126360014BR.GOV.BCB.PIX0114+5562920005056520400005303986540510.005802BR5925Robson Pereira da Costa J6009SAO PAULO62140510ktr10bIeyP63046E56</div>
+                                <button class="pix-copy-btn" id="copy-pix" title="Copiar código PIX">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="editor-container">
@@ -167,5 +184,21 @@
     <script src="js/ui/modalManager.js"></script>
     <script src="js/ui/fileManager.js"></script>
     <script src="js/main.js"></script>
+    
+    <!-- Script para copiar código PIX -->
+    <script>
+        document.getElementById('copy-pix').addEventListener('click', function() {
+            const pixCode = document.querySelector('.pix-code-input').textContent;
+            navigator.clipboard.writeText(pixCode).then(function() {
+                // Feedback visual
+                const button = document.getElementById('copy-pix');
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(function() {
+                    button.innerHTML = originalIcon;
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
